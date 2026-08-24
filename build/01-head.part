@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jaano — Verify anything that needs proof</title>
+<meta name="description" content="Configurable video verification for people, property, businesses, collateral and claims. RBI-compliant, geo-locked, tamper-proof, 100% human-reviewed. A product of Blostem Fintech Pvt. Ltd.">
+<meta name="theme-color" content="#fafbff">
+<meta property="og:title" content="Jaano — Verify anything that needs proof">
+<meta property="og:description" content="One configurable, RBI-compliant verification platform. Every check captured live, geo-locked and tamper-proof, reviewed by a human.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════════
+   JAANO
+   DLS — tokens copied byte-for-byte from the deployed styles.css.
+   Spacing/type rhythm mirrors the original's Tailwind scale so the
+   whole page stays on one system.
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  /* —— palette: identical to production —— */
+  --cloud-bg:#fafbff; --mist:#f4f6fc; --halo:#e5e9f2; --surface:#fff;
+  --ink:#0b1020; --ink-dark:#050811; --ink-muted:#475569;
+  /* --ink-faint was #94a3b8 (2.56:1 on the page background — below WCAG AA).
+     It carries almost every small label on the site, so fine print was the
+     LEAST readable text rather than the most. Darkened to 5.6:1.
+     NOTE: this is a deliberate change to the deployed DLS value. */
+  --ink-faint:#5b6878;
+  --ink-faint-dark:#a5b2c8;   /* the same role on ink sections — 7.4:1 there */
+  --border:#e2e8f0;
+  --lavender:#a78bfa; --lavender-deep:#7c3aed; --lavender-soft:#f5f3ff;
+  --electric:#60a5fa; --electric-deep:#1d4ed8; --electric-soft:#eff6ff;
+  --green-success:#10b981;
+  /* —— additive only —— */
+  --green-soft:#ecfdf5; --green-deep:#047857;
+  --amber:#b45309; --amber-soft:#fffbeb;   /* was #d97706 — 2.95:1 as text */
+  --danger:#dc2626;
+
+  /* —— spacing: Tailwind scale, same steps the original uses —— */
+  --s1:.25rem; --s2:.5rem;  --s3:.75rem; --s4:1rem;   --s5:1.25rem;
+  --s6:1.5rem; --s8:2rem;   --s10:2.5rem; --s12:3rem; --s14:3.5rem;
+  --s16:4rem;  --s20:5rem;  --s24:6rem;
+  --r-sm:.5rem; --r-md:.75rem; --r-lg:1rem; --r-xl:1.25rem; --r-full:9999px;
+  --maxw:80rem;      /* max-w-7xl */
+  --maxw-copy:42rem; /* max-w-2xl */
+
+  --sh-1:0 1px 2px rgba(11,16,32,.04);
+  --sh-2:0 12px 32px -16px rgba(11,16,32,.14),0 1px 2px rgba(11,16,32,.04);
+  --sh-3:0 28px 64px -28px rgba(11,16,32,.26),0 2px 6px rgba(11,16,32,.05);
+  --sh-lav:0 20px 48px -20px rgba(124,58,237,.45);
+  --sh-ink:0 24px 48px -16px rgba(0,0,0,.4);
+
+  --e-out:cubic-bezier(.16,1,.3,1);
+  --e-io:cubic-bezier(.4,0,.2,1);
+  --t1:140ms; --t2:260ms; --t3:480ms; --t4:820ms;
+
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip;
+  scroll-padding-top:5rem}
+body{font-family:var(--sans);background:var(--cloud-bg);color:var(--ink);
+  letter-spacing:-.011em;line-height:1.5;-webkit-font-smoothing:antialiased;
+  overflow-x:clip}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit;color:inherit}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--lavender-deep);outline-offset:3px;border-radius:4px}
+::selection{background:var(--lavender-soft);color:var(--lavender-deep)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.sr-only:focus{position:fixed;top:12px;left:12px;width:auto;height:auto;clip:auto;
+  background:var(--ink);color:#fff;padding:10px 16px;border-radius:8px;z-index:99}
+
+/* ══ layout rhythm — one scale, used everywhere ══ */
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--s6);position:relative;z-index:1}
+@media(min-width:1024px){.wrap{padding-inline:var(--s10)}}
+.sec{padding-block:var(--s24);position:relative;overflow:clip}
+@media(max-width:640px){.sec{padding-block:var(--s16)}}
+.sec--warm{background:var(--mist)}
+.sec--ink{background:var(--ink-dark);color:var(--cloud-bg)}
+
+/* ══ type ══ */
+.display{letter-spacing:-.045em;font-weight:700;line-height:1.05}
+.mono{font-family:var(--mono)}
+h1{font-size:clamp(2.375rem,5.2vw,3.875rem);letter-spacing:-.045em;line-height:1.04;
+  font-weight:700}
+h2{font-size:clamp(1.75rem,3.2vw,2.25rem);letter-spacing:-.04em;line-height:1.12;
+  font-weight:700}
+@media(min-width:640px){h2{font-size:2.25rem}}
+h3{font-size:1.0625rem;letter-spacing:-.03em;line-height:1.3;font-weight:700}
+.lede{font-size:1.0625rem;line-height:1.65;color:var(--ink-muted)}
+@media(min-width:640px){.lede{font-size:1.125rem}}
+.body{font-size:.875rem;line-height:1.65;color:var(--ink-muted)}
+.muted{color:var(--ink-muted)} .faint{color:var(--ink-faint)}
+.eyebrow{font-family:var(--mono);font-size:.6875rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--lavender-deep);display:inline-flex;align-items:center;
+  gap:.625rem}
+.eyebrow::before{content:"";width:1.375rem;height:1.5px;background:currentColor;flex:none}
+.eyebrow--c{justify-content:center}
+.tiny{font-family:var(--mono);font-size:.6875rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:700}
+
+/* ink-section colour overrides, declared once */
+.sec--ink .lede,.sec--ink .body,.sec--ink .muted{color:#cbd5e1}
+.sec--ink .faint,.sec--ink .tiny,.ft .faint,.ft .tiny{color:var(--ink-faint-dark)}
+.sec--ink .cert span,.ft .cert span{color:var(--ink-faint-dark)}
+/* .card > p sets --ink-muted directly, which loses all contrast on an ink section */
+.sec--ink .card > p,.sec--ink p{color:#cbd5e1}
+.sec--ink .eyebrow{color:var(--lavender)}

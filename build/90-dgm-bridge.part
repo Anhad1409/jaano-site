@@ -1,0 +1,47 @@
+<svg class="dgm draw" viewBox="0 0 1080 358" role="img" aria-label="Blostem sits between more than thirty fintech platforms and more than ten banks and NBFCs; Jaano runs on the same stack.">
+<rect class="node" x="180.0" y="-3" width="150" height="28" rx="8"/>
+<image href="assets/logos/zerodha.svg" x="197.9" y="3.5" width="114.2" height="15.0" preserveAspectRatio="xMidYMid meet"><title>Zerodha</title></image>
+<rect class="node" x="180.0" y="31" width="150" height="28" rx="8"/>
+<image href="assets/logos/mobikwik.svg" x="221.5" y="37.5" width="67.0" height="15.0" preserveAspectRatio="xMidYMid meet"><title>MobiKwik</title></image>
+<rect class="node" x="180.0" y="65" width="150" height="28" rx="8"/>
+<image href="assets/logos/upstox.svg" x="230.6" y="71.5" width="48.8" height="15.0" preserveAspectRatio="xMidYMid meet"><title>Upstox</title></image>
+<rect class="node" x="180.0" y="99" width="150" height="28" rx="8"/>
+<image href="assets/logos/jupiter.svg" x="231.3" y="105.5" width="47.3" height="15.0" preserveAspectRatio="xMidYMid meet"><title>Jupiter</title></image>
+<rect class="node" x="180.0" y="133" width="150" height="28" rx="8"/>
+<image href="assets/logos/jiofinance.svg" x="244.9" y="136.9" width="20.1" height="20.1" preserveAspectRatio="xMidYMid meet"><title>Jio Finance</title></image>
+<rect class="node" x="180.0" y="167" width="150" height="28" rx="8"/>
+<image href="assets/logos/tide.png" x="245.4" y="171.4" width="19.2" height="19.2" preserveAspectRatio="xMidYMid meet"><title>Tide</title></image>
+<rect class="node" x="180.0" y="201" width="150" height="28" rx="8"/>
+<image href="assets/logos/adityabirlacapital.svg" x="221.9" y="207.5" width="66.3" height="15.0" preserveAspectRatio="xMidYMid meet"><title>Aditya Birla Capital</title></image>
+<rect class="node" x="180.0" y="235" width="150" height="28" rx="8"/>
+<image href="assets/logos/kfintech.svg" x="216.3" y="241.5" width="77.3" height="15.0" preserveAspectRatio="xMidYMid meet"><title>Kfintech</title></image>
+<rect class="node" x="750.0" y="-3" width="150" height="28" rx="8"/>
+<image href="assets/logos/indusindbank.svg" x="761.0" y="4.1" width="128.0" height="13.9" preserveAspectRatio="xMidYMid meet"><title>IndusInd Bank</title></image>
+<rect class="node" x="750.0" y="31" width="150" height="28" rx="8"/>
+<image href="assets/logos/bajajfinance.svg" x="798.0" y="33.8" width="54.0" height="22.5" preserveAspectRatio="xMidYMid meet"><title>Bajaj Finance</title></image>
+<rect class="node" x="750.0" y="65" width="150" height="28" rx="8"/>
+<circle cx="763" cy="79" r="2.6" fill="var(--electric)"/>
+<text class="lbl" x="773" y="83" style="font-size:10.5px">Shriram Finance</text>
+<rect class="node" x="750.0" y="99" width="150" height="28" rx="8"/>
+<image href="assets/logos/mahindrafinance.png" x="777.1" y="105.5" width="95.8" height="15.0" preserveAspectRatio="xMidYMid meet"><title>Mahindra Finance</title></image>
+<rect class="node" x="750.0" y="133" width="150" height="28" rx="8"/>
+<image href="assets/logos/suryodaysfb.webp" x="787.4" y="139.5" width="75.2" height="15.0" preserveAspectRatio="xMidYMid meet"><title>Suryoday SFB</title></image>
+<rect class="node" x="750.0" y="167" width="150" height="28" rx="8"/>
+<circle cx="763" cy="181" r="2.6" fill="var(--electric)"/>
+<text class="lbl" x="773" y="185" style="font-size:10.5px">Unity SFB</text>
+<rect class="node" x="750.0" y="201" width="150" height="28" rx="8"/>
+<image href="assets/logos/utkarshsfb.svg" x="780.8" y="207.5" width="88.4" height="15.0" preserveAspectRatio="xMidYMid meet" style="filter:brightness(0)"><title>Utkarsh SFB</title></image>
+<rect class="node" x="750.0" y="235" width="150" height="28" rx="8"/>
+<image href="assets/logos/shivaliksfb.png" x="788.2" y="240.4" width="73.7" height="17.2" preserveAspectRatio="xMidYMid meet"><title>Shivalik SFB</title></image>
+<rect class="node node--lav" x="390" y="66" width="300" height="128" rx="16" data-d="1"/>
+<g transform="translate(523,84) scale(0.34)"><use href="#bm" width="101.2" height="111.64" style="color:var(--lavender-deep)"/></g>
+<g transform="translate(502,130) scale(0.75)"><use href="#bw" width="101.2" height="39.53" style="color:var(--ink)"/></g>
+<text x="540" y="178" text-anchor="middle">RBI TSP &#183; est. 2021 &#183; ISO 27001:2022</text>
+<path class="wire wire--live" d="M338 130 H382" data-d="2"/>
+<path class="wire wire--live" d="M698 130 H742" data-d="3"/>
+<circle class="flow travel" r="3.2" style="--p:path('M338 130 H382');--dur:2.8s"/>
+<circle class="flow flow--el travel" r="3.2" style="--p:path('M698 130 H742');--dur:2.8s;--dly:1.4s"/>
+<text x="0" y="334" style="font-size:10px"><tspan class="lbl" style="font-size:20px;fill:var(--lavender-deep)">30+</tspan>  PLATFORMS BUILDING ON BLOSTEM</text>
+<text x="1080" y="334" text-anchor="end" style="font-size:10px"><tspan class="lbl" style="font-size:20px;fill:var(--electric-deep)">10+</tspan>  BANKS &amp; NBFCS ON THE OTHER SIDE</text>
+<text x="540" y="334" text-anchor="middle" class="sub">Jaano runs on this stack</text>
+</svg>

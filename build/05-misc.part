@@ -1,0 +1,110 @@
+
+/* ══════════════════════════════════════════════════════════════
+   NAV · MARQUEE CHIP · CODE · STAT · CERT · FOOTER
+   ══════════════════════════════════════════════════════════════ */
+.nav{position:sticky;top:0;z-index:50;position:sticky;background:rgba(250,251,255,.8);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;transition:border-color var(--t2),background var(--t2)}
+.nav.stuck{border-bottom-color:var(--border);background:rgba(250,251,255,.94)}
+.nav::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  pointer-events:none;opacity:0;transition:opacity var(--t3)}
+.nav.stuck::after{opacity:1;
+  background:linear-gradient(90deg,transparent 30%,rgba(124,58,237,.55) 50%,transparent 70%);
+  background-size:50% 100%;background-repeat:no-repeat;
+  animation:beamPan 7s var(--e-io) infinite}
+.nav__in{height:4rem;display:flex;align-items:center;justify-content:space-between;gap:var(--s5)}
+.brand{display:flex;align-items:center;gap:.6875rem}
+.brand__m{height:1.75rem;width:1.105rem;color:var(--lavender-deep);flex:none}
+.brand__w{height:.8125rem;width:5.47rem;color:var(--ink);flex:none}
+.brand__by{font-family:var(--mono);font-size:.5625rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:700}
+.nav__l{display:none;align-items:center;gap:.125rem}
+@media(min-width:1060px){.nav__l{display:flex}}
+.nav__l a{font-size:.8125rem;color:var(--ink-muted);padding:.5rem .75rem;border-radius:.5rem;
+  transition:color var(--t1),background var(--t1)}
+.nav__l a:hover{color:var(--ink);background:rgba(11,16,32,.05)}
+.nav__l a[aria-current="true"]{color:var(--lavender-deep);background:var(--lavender-soft)}
+.nav .btn{padding:.625rem 1rem;font-size:.8125rem}
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;transform-origin:0 50%;
+  transform:scaleX(0);background:linear-gradient(90deg,var(--lavender-deep),var(--electric-deep))}
+
+/* —— hero text column —— */
+.hero{position:relative;overflow:clip;padding-block:var(--s16) var(--s20)}
+.hero__g{display:grid;gap:var(--s12);align-items:center}
+@media(min-width:1060px){.hero__g{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:var(--s8)}}
+.hero h1{margin-top:var(--s5)}
+.hero h1 .grad{background:linear-gradient(96deg,var(--lavender-deep),var(--electric-deep));
+  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:gradPan 8s var(--e-io) infinite}
+.hero .lede{margin-top:var(--s5);max-width:32rem}
+.hero__cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:var(--s8)}
+.hero__strip{display:flex;flex-wrap:wrap;gap:.5625rem;margin-top:var(--s8)}
+
+/* —— marquee chip —— */
+.bchip{display:inline-flex;align-items:center;gap:.625rem;flex:none;white-space:nowrap;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
+  padding:.8125rem 1.25rem;font-size:.90625rem;font-weight:700;letter-spacing:-.02em;
+  color:var(--ink);box-shadow:var(--sh-1);
+  transition:border-color var(--t2),box-shadow var(--t2),transform var(--t2)}
+.bchip:hover{border-color:var(--lavender);box-shadow:var(--sh-2);transform:translateY(-2px)}
+.bchip .dt{width:6px;height:6px;border-radius:50%;background:var(--lavender);flex:none}
+.bchip.bk .dt{background:var(--electric)}
+/* a brand with a real wordmark logo shows the logo alone — the name is in the mark.
+   Chip metrics match the typographic variant so the row stays on one baseline. */
+.bchip--logo{padding:.6875rem 1.125rem}
+.bchip__lg{height:1.375rem;width:auto;max-width:7.25rem;object-fit:contain;
+  object-position:center;display:block;filter:saturate(.92)}
+.bchip--logo:hover .bchip__lg{filter:saturate(1)}
+@media(max-width:560px){.bchip__lg{height:1.1875rem;max-width:5.75rem}}
+
+/* —— code —— */
+.code{background:var(--ink-dark);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-3);
+  border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;height:100%}
+.code pre{flex:1}
+.code__b{display:flex;align-items:center;justify-content:space-between;padding:.8125rem 1.125rem;
+  border-bottom:1px solid rgba(255,255,255,.09);font-family:var(--mono);font-size:.6875rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint-dark);font-weight:600}
+.code__d{display:flex;gap:.375rem}
+.code__d i{width:8px;height:8px;border-radius:50%;background:#2d3550}
+.code pre{padding:1.25rem 1.125rem;overflow-x:auto;font-family:var(--mono);font-size:.78125rem;
+  line-height:1.8;color:#dbe1f0}
+.code .k{color:#c4b5fd} .code .s{color:#6ee7b7} .code .c{color:#8b97b8}
+.code .m{color:#60a5fa;font-weight:600}
+
+/* —— stat / cert —— */
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:var(--s6);box-shadow:var(--sh-2)}
+.stat__v{font-size:clamp(1.75rem,3vw,2.25rem);font-weight:700;letter-spacing:-.045em;line-height:1;
+  background:linear-gradient(96deg,var(--lavender-deep),var(--electric-deep));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.stat__k{font-family:var(--mono);font-size:.6875rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-faint);margin-top:.75rem;line-height:1.6}
+.sec--ink .stat{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.1);box-shadow:none}
+.cert{display:flex;flex-direction:column;gap:.375rem;background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s5);
+  box-shadow:var(--sh-1);transition:border-color var(--t2),transform var(--t2)}
+.cert:hover{border-color:var(--lavender);transform:translateY(-2px)}
+.cert b{font-size:.9375rem;font-weight:700;letter-spacing:-.025em}
+.cert span{font-family:var(--mono);font-size:.625rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:700}
+.sec--ink .cert{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.1);box-shadow:none}
+
+/* —— footer —— */
+.ft{background:var(--ink-dark);color:var(--cloud-bg);padding:var(--s16) 0 var(--s8);
+  position:relative;overflow:clip}
+.ft__g{display:grid;gap:var(--s10)}
+@media(min-width:820px){.ft__g{grid-template-columns:1.6fr 1fr 1fr}}
+.ft h4{font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint-dark);font-weight:700;margin-bottom:var(--s4)}
+.ft a{display:block;font-size:.875rem;color:#cbd5e1;padding:.375rem 0;transition:color var(--t1)}
+.ft a:hover{color:#fff}
+.ft__b{margin-top:var(--s12);padding-top:var(--s6);border-top:1px solid rgba(255,255,255,.1);
+  display:flex;flex-wrap:wrap;gap:.875rem;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:.6875rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-faint-dark);font-weight:500}
+.ft .brand__m{color:var(--lavender)} .ft .brand__w{color:#fff}
+.ft .brand__by{color:var(--ink-faint-dark)}
+
+/* brands that publish only a square mark: show mark + name, never the symbol alone */
+.bchip--mark{padding:.75rem 1.125rem .75rem .875rem}
+.bchip__mk{width:1.375rem;height:1.375rem;object-fit:contain;flex:none;border-radius:.3125rem}

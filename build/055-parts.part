@@ -1,0 +1,32 @@
+
+/* ══ shared console parts — checklist rows + signal meters ══ */
+/* checklist */
+.ck{display:flex;flex-direction:column;gap:.3125rem;min-width:0}
+.ck__t{font-family:var(--mono);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:700;margin-bottom:.125rem}
+.ck__r{display:flex;align-items:center;gap:.4375rem;background:var(--mist);
+  border:1px solid var(--border-soft,var(--border));border-radius:.5rem;
+  padding:.375rem .5rem;min-width:0}
+.ck__r .st{width:.875rem;height:.875rem;border-radius:50%;display:grid;place-items:center;
+  flex:none;font-size:.5rem;font-weight:800}
+.ck__r.ok .st{background:var(--green-soft);color:var(--green-deep)}
+.ck__r.now .st{background:var(--lavender-soft);color:var(--lavender-deep)}
+.ck__r.todo .st{background:#eef2f7;color:var(--ink-faint)}
+.ck__r .l{font-size:.625rem;font-weight:600;letter-spacing:-.01em;color:var(--ink);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ck__r .t{margin-left:auto;font-family:var(--mono);font-size:.5rem;color:var(--ink-faint);
+  flex:none}
+.ck__r.now{border-color:#ddd6fe;background:var(--lavender-soft)}
+/* signal meters */
+.met{display:flex;flex-direction:column;gap:.375rem;margin-top:.5rem;padding-right:2.6rem}
+.met__r{display:grid;grid-template-columns:4.3rem 1fr 1.9rem;gap:.4375rem;align-items:center}
+.met__r .k{font-family:var(--mono);font-size:.5rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-faint);font-weight:700;white-space:nowrap}
+.met__r .bar{height:.3125rem;border-radius:var(--r-full);background:var(--halo);overflow:hidden}
+.met__r .bar i{display:block;height:100%;border-radius:inherit;transform-origin:left;
+  background:linear-gradient(90deg,var(--green-deep),var(--green-success));
+  animation:barGrow 1.2s var(--e-out) both .4s}
+.met__r.warn .bar i{background:linear-gradient(90deg,#b45309,var(--amber))}
+.met__r .v{font-family:var(--mono);font-size:.5625rem;font-weight:700;color:var(--green-deep);
+  text-align:right}
+.met__r.warn .v{color:var(--amber)}

@@ -1,0 +1,75 @@
+
+/* ══════════════════════════════════════════════════════════════
+   MOTION SYSTEM
+   ══════════════════════════════════════════════════════════════ */
+@keyframes riseIn  {from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none}}
+@keyframes fadeIn  {from{opacity:0} to{opacity:1}}
+@keyframes zoomIn  {from{opacity:0;transform:scale(.94)} to{opacity:1;transform:none}}
+@keyframes marqL   {from{transform:translateX(0)} to{transform:translateX(-50%)}}
+@keyframes marqR   {from{transform:translateX(-50%)} to{transform:translateX(0)}}
+@keyframes ping    {0%{opacity:.5;transform:scale(.85)} 100%{opacity:0;transform:scale(1.85)}}
+@keyframes gradPan {0%,100%{background-position:0% 50%} 50%{background-position:100% 50%}}
+@keyframes scanY   {0%{transform:translateY(0);opacity:0} 12%{opacity:.9}
+                    88%{opacity:.55} 100%{transform:translateY(var(--scan-d,96px));opacity:0}}
+@keyframes blink   {0%,58%{opacity:1} 72%,100%{opacity:.2}}
+@keyframes amp     {0%,100%{height:16%} 50%{height:100%}}
+@keyframes spin    {to{transform:rotate(360deg)}}
+@keyframes floatY  {0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}}
+@keyframes drawIn  {to{stroke-dashoffset:0}}
+@keyframes flowDot {0%{offset-distance:0%;opacity:0} 8%{opacity:1}
+                    92%{opacity:1} 100%{offset-distance:100%;opacity:0}}
+@keyframes dashRun {to{stroke-dashoffset:-24}}
+@keyframes barGrow {from{transform:scaleX(0)} to{transform:scaleX(1)}}
+/* — from the GFF landing family — */
+@keyframes jgrid   {from{background-position:0 0,0 0} to{background-position:44px 0,0 44px}}
+@keyframes beamPan {from{background-position:220% 0} to{background-position:-220% 0}}
+@keyframes lineLaunch{from{opacity:0;transform:translateY(112%) rotateX(-28deg)}
+                      to{opacity:1;transform:none}}
+@keyframes chainPop{0%{opacity:0;transform:translateY(8px) scale(.9)}
+                    100%{opacity:1;transform:none}}
+
+/* —— scroll reveal —— */
+[data-rise]{opacity:0}
+[data-rise].in{animation:riseIn var(--t4) var(--e-out) both}
+[data-zoom]{opacity:0}
+[data-zoom].in{animation:zoomIn var(--t4) var(--e-out) both}
+[data-delay="1"].in{animation-delay:70ms} [data-delay="2"].in{animation-delay:140ms}
+[data-delay="3"].in{animation-delay:210ms} [data-delay="4"].in{animation-delay:280ms}
+[data-delay="5"].in{animation-delay:350ms} [data-delay="6"].in{animation-delay:420ms}
+
+/* —— svg path draw-on-scroll —— */
+.draw path,.draw line,.draw circle,.draw rect,.draw polyline{
+  stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600)}
+.draw.in path,.draw.in line,.draw.in circle,.draw.in rect,.draw.in polyline{
+  animation:drawIn 1.5s var(--e-out) forwards}
+.draw.in [data-d="1"]{animation-delay:.16s} .draw.in [data-d="2"]{animation-delay:.32s}
+.draw.in [data-d="3"]{animation-delay:.48s} .draw.in [data-d="4"]{animation-delay:.64s}
+.draw.in [data-d="5"]{animation-delay:.8s}  .draw.in [data-d="6"]{animation-delay:.96s}
+
+/* —— marquee —— */
+.marquee{position:relative;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee__track{display:flex;width:max-content;gap:.875rem;will-change:transform}
+.marquee__track.l{animation:marqL var(--dur,48s) linear infinite}
+.marquee__track.r{animation:marqR var(--dur,60s) linear infinite}
+.marquee:hover .marquee__track,.marquee:focus-within .marquee__track{animation-play-state:paused}
+.marquee + .marquee{margin-top:.875rem}
+
+/* hero line launch (GFF) — runs once on load */
+.hero h1 .ln{display:block;overflow:hidden;perspective:600px}
+.hero h1 .li{display:block;animation:lineLaunch 820ms var(--e-out) both}
+.hero h1 .ln:nth-child(2) .li{animation-delay:140ms}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important}
+  [data-rise],[data-zoom]{opacity:1!important;animation:none!important}
+  .hero h1 .li,.grid-bg,.nav.stuck::after{animation:none!important}
+  .draw path,.draw line,.draw circle,.draw rect,.draw polyline{
+    stroke-dashoffset:0!important;animation:none!important}
+  .marquee__track{animation:none!important;transform:none!important;flex-wrap:wrap;width:100%;
+    justify-content:center}
+  .marquee{-webkit-mask-image:none;mask-image:none}
+}

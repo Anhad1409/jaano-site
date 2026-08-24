@@ -1,0 +1,177 @@
+
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── scroll reveal + svg draw ── */
+  var targets = [].slice.call(document.querySelectorAll('[data-rise],[data-zoom],.draw'));
+  if (reduce || !('IntersectionObserver' in window)) {
+    targets.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin:'0px 0px -10% 0px', threshold:.05 });
+    targets.forEach(function(el){ io.observe(el); });
+    /* anchor jumps can leap past elements without intersecting them —
+       sweep anything already at or above the viewport on every scroll */
+    var pending=targets.slice();
+    window.addEventListener('scroll', function(){
+      if(!pending.length) return;
+      requestAnimationFrame(function(){
+        var vh=window.innerHeight*1.06;
+        pending=pending.filter(function(el){
+          if(el.getBoundingClientRect().top < vh){
+            el.classList.add('in'); io.unobserve(el); return false;
+          } return true;
+        });
+      });
+    },{passive:true});
+  }
+
+  /* svg stroke lengths, measured so draw-in is exact per path */
+  if (!reduce) {
+    [].forEach.call(document.querySelectorAll('.draw path,.draw line,.draw circle,.draw rect'),
+      function(p){ try{ var L=Math.ceil(p.getTotalLength())+2;
+        p.style.setProperty('--len', L); }catch(err){} });
+  }
+
+
+  /* ── hero rotator: four scenes, one per verification stage ──
+     Tabs follow the WAI-ARIA tablist pattern (roving tabindex + arrow keys).
+     Auto-advance pauses on hover, on focus, and when the tab is backgrounded. */
+  var rot=document.querySelector('[data-rot]');
+  if (rot){
+    var scns=[].slice.call(rot.querySelectorAll('.scn')),
+        tabs=[].slice.call(rot.querySelectorAll('.rot__tab')),
+        HOLD=3200, cur=0, timer=null;
+
+    function show(n, focusTab){
+      if (n===cur) return;
+      var prev=scns[cur];
+      prev.classList.remove('on'); prev.classList.add('out');
+      setTimeout(function(){ prev.classList.remove('out'); prev.hidden=true; }, 400);
+      cur=n;
+      scns[n].hidden=false;
+      /* force reflow so the entry transition and the progress bar both restart */
+      void scns[n].offsetWidth;
+      scns[n].classList.add('on');
+      tabs.forEach(function(t,i){
+        var on=i===n;
+        t.setAttribute('aria-selected', on?'true':'false');
+        t.tabIndex = on?0:-1;
+        if (on){ var bar=t.querySelector('.rot__bar');
+          bar.style.animation='none'; void bar.offsetWidth; bar.style.animation=''; }
+      });
+      if (focusTab) tabs[n].focus();
+      restart();
+    }
+    function next(){ show((cur+1)%scns.length); }
+    function restart(){ clearInterval(timer);
+      if (!rot.dataset.paused) timer=setInterval(next, reduce?HOLD+1800:HOLD); }
+    function pause(v){ rot.dataset.paused = v?'true':''; if (v) clearInterval(timer); else restart(); }
+
+    tabs.forEach(function(t,i){
+      t.addEventListener('click', function(){ show(i); });
+      t.addEventListener('keydown', function(e){
+        var k=e.key, n=null;
+        if (k==='ArrowRight'||k==='ArrowDown') n=(i+1)%tabs.length;
+        else if (k==='ArrowLeft'||k==='ArrowUp') n=(i-1+tabs.length)%tabs.length;
+        else if (k==='Home') n=0;
+        else if (k==='End') n=tabs.length-1;
+        if (n!==null){ e.preventDefault(); show(n, true); }
+      });
+    });
+    rot.addEventListener('mouseenter', function(){ pause(true); });
+    rot.addEventListener('mouseleave', function(){ pause(false); });
+    rot.addEventListener('focusin',  function(){ pause(true); });
+    rot.addEventListener('focusout', function(e){
+      if (!rot.contains(e.relatedTarget)) pause(false); });
+    document.addEventListener('visibilitychange', function(){ pause(document.hidden); });
+    rot.style.setProperty('--hold', HOLD+'ms');
+    restart();
+  }
+
+  /* ── sticky nav + progress + scrollspy ── */
+  var nav=document.getElementById('nav'),
+      prog=document.getElementById('progress'),
+      links=[].slice.call(document.querySelectorAll('.nav__l a')),
+      secs=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }),
+      raf;
+  function onScroll(){
+    cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(function(){
+      var y=window.scrollY;
+      nav.classList.toggle('stuck', y>8);
+      var doc=document.documentElement;
+      prog.style.transform='scaleX('+(y/(doc.scrollHeight-window.innerHeight||1))+')';
+      var cur=-1;
+      for (var i=0;i<secs.length;i++){
+        if (secs[i] && secs[i].getBoundingClientRect().top <= window.innerHeight*0.34) cur=i;
+      }
+      links.forEach(function(a,i){
+        if (i===cur) a.setAttribute('aria-current','true');
+        else a.removeAttribute('aria-current');
+      });
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ── marquee: constant speed regardless of content length ── */
+  if (!reduce) {
+    [].forEach.call(document.querySelectorAll('.marquee__track'), function(t){
+      var w=t.scrollWidth/2, pps=t.classList.contains('r')?26:32;
+      t.style.setProperty('--dur', Math.round(w/pps)+'s');
+    });
+  }
+
+  /* ── count-up ── */
+  if (!reduce && 'IntersectionObserver' in window) {
+    var nio=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var el=e.target, target=+el.getAttribute('data-count'),
+            suf=el.getAttribute('data-suffix')||'', t0=null, dur=900;
+        function step(ts){ if(!t0)t0=ts;
+          var p=Math.min((ts-t0)/dur,1);
+          el.textContent=Math.round(target*(1-Math.pow(1-p,3)))+suf;
+          if(p<1) requestAnimationFrame(step); }
+        requestAnimationFrame(step); nio.unobserve(el);
+      });
+    },{threshold:.6});
+    [].forEach.call(document.querySelectorAll('[data-count]'),function(n){ nio.observe(n); });
+  }
+
+  /* ── lead form: same contract as production (/api/lead) ── */
+  var f=document.getElementById('lead-form');
+  if (f){
+    var s=document.getElementById('lead-status');
+    f.addEventListener('submit', async function(e){
+      e.preventDefault();
+      if (!f.reportValidity()) return;
+      var btn=f.querySelector('button[type=submit]'), orig=btn.textContent;
+      btn.disabled=true; btn.textContent='Sending…'; s.style.display='none';
+      var data=Object.fromEntries(new FormData(f).entries());
+      try{
+        var r=await fetch('/api/lead',{method:'POST',
+          headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+        if(!r.ok) throw new Error('bad');
+        f.reset(); btn.textContent='Sent';
+        s.style.color='var(--green-success)';
+        s.textContent='Thanks. We will be in touch within one business day.';
+        s.style.display='block';
+      }catch(err){
+        btn.disabled=false; btn.textContent=orig;
+        s.style.color='var(--danger)';
+        s.textContent='Something went wrong. Please try again in a moment.';
+        s.style.display='block';
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>

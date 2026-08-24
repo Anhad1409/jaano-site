@@ -1,0 +1,41 @@
+<svg class="dgm draw" viewBox="0 0 1080 300" role="img" aria-label="The verification lifecycle: your system requests a URL; Jaano captures live, geo-locked evidence; AI surfaces advisory signals; a human reviews every case; a signed decision returns with the full audit trail.">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#cbd5e1"/></marker></defs>
+<path class="wire" d="M219.2 86 H239.2" marker-end="url(#ah)" data-d="1"/>
+<circle class="flow travel" r="3.4" style="--p:path('M219.2 86 H239.2');--dur:2.4s;--dly:0.00s"/>
+<path class="wire" d="M424.4 86 H444.4" marker-end="url(#ah)" data-d="2"/>
+<circle class="flow travel" r="3.4" style="--p:path('M424.4 86 H444.4');--dur:2.4s;--dly:0.42s"/>
+<path class="wire" d="M629.6 86 H649.6" marker-end="url(#ah)" data-d="3"/>
+<circle class="flow travel" r="3.4" style="--p:path('M629.6 86 H649.6');--dur:2.4s;--dly:0.84s"/>
+<path class="wire" d="M834.8 86 H854.8" marker-end="url(#ah)" data-d="4"/>
+<circle class="flow travel" r="3.4" style="--p:path('M834.8 86 H854.8');--dur:2.4s;--dly:1.26s"/>
+<path class="wire wire--live" d="M540.0 132 V166 H334.8 V138.0" marker-end="url(#ah)" data-d="5"/>
+<text class="sub" x="437.4" y="184" text-anchor="middle">unusable capture is re-taken — the journey never dead-ends</text>
+<path class="wire" d="M950.4 132 V228 H129.6 V138.0" marker-end="url(#ah)" data-d="6"/>
+<circle class="flow flow--el travel" r="3.4" style="--p:path('M950.4 132 V228 H129.6 V138.0');--dur:4s;--dly:2.2s"/>
+<text class="sub" x="540" y="246" text-anchor="middle">one signed webhook back — decision, evidence and hash-chained audit trail</text>
+<rect class="node node--el" x="40.0" y="40" width="179.2" height="92" rx="13"/>
+<g transform="translate(56.0,56)"><rect class="ic ic--el" x="0" y="1" width="20" height="13" rx="3"/><path class="ic ic--el" d="M5 18h10M10 14v4"/></g>
+<text x="56.0" y="96">Step 01</text>
+<text class="lbl" x="56.0" y="112">Your system</text>
+<text class="sub" x="56.0" y="126">POST /v1/cases/issue-url</text>
+<rect class="node node--lav" x="245.2" y="40" width="179.2" height="92" rx="13"/>
+<g transform="translate(261.2,56)"><rect class="ic" x="0" y="3" width="20" height="14" rx="3.5"/><circle class="ic" cx="10" cy="10" r="3.8"/></g>
+<text x="261.2" y="96">Step 02</text>
+<text class="lbl" x="261.2" y="112">Live capture</text>
+<text class="sub" x="261.2" y="126">camera-bound, geo + time</text>
+<rect class="node node--el" x="450.4" y="40" width="179.2" height="92" rx="13"/>
+<g transform="translate(466.4,56)"><path class="ic ic--el" d="M0 16 L5.5 7 L11 12 L16 2"/><path class="ic ic--el" d="M0 19h20"/></g>
+<text x="466.4" y="96">Step 03</text>
+<text class="lbl" x="466.4" y="112">AI signals</text>
+<text class="sub" x="466.4" y="126">OCR · face · liveness scores</text>
+<rect class="node node--gr" x="655.6" y="40" width="179.2" height="92" rx="13"/>
+<g transform="translate(671.6,56)"><circle class="ic ic--gr" cx="10" cy="5.5" r="4.2"/><path class="ic ic--gr" d="M2 19v-1.6A7.4 7.4 0 0 1 9.4 10h1.2a7.4 7.4 0 0 1 7.4 7.4V19"/></g>
+<text x="671.6" y="96">Step 04</text>
+<text class="lbl" x="671.6" y="112">Human review</text>
+<text class="sub" x="671.6" y="126">maker–checker, 100% of cases</text>
+<rect class="node node--lav" x="860.8" y="40" width="179.2" height="92" rx="13"/>
+<g transform="translate(876.8,56)"><path class="ic" d="M10 1 2.6 4.2v5.1c0 4.5 3 8.2 7.4 9.7 4.4-1.5 7.4-5.2 7.4-9.7V4.2Z"/><path class="ic" d="M6.6 10.2 9 12.6l4.4-4.6"/></g>
+<text x="876.8" y="96">Step 05</text>
+<text class="lbl" x="876.8" y="112">Signed decision</text>
+<text class="sub" x="876.8" y="126">webhook + evidence + audit</text>
+</svg>

@@ -1,0 +1,331 @@
+
+<!-- ══════════ EVIDENCE INTEGRITY ══════════ -->
+<section class="sec sec--warm" id="integrity" aria-labelledby="h-int">
+  <div class="wrap">
+    <div class="shead shead--split">
+      <div>
+        <span class="eyebrow" data-rise>Evidence integrity</span>
+        <h2 class="display" id="h-int" data-rise data-delay="1">An audit trail that<br>can&rsquo;t be quietly edited.</h2>
+      </div>
+      <p class="lede" data-rise data-delay="2">Every event is hashed and chained to the one before it.
+        Change anything after the fact and the chain breaks &mdash; visibly.</p>
+    </div>
+    <div class="dgm-wrap" style="margin-top:var(--s12)" data-rise>
+      <div class="dgm-wrap__cap">
+        <span class="tiny">Case JN-2214 &middot; hash-chained event log</span>
+        <span class="pill pill--gr">Tamper-evident</span>
+      </div>
+      <div class="chain"><div class="chain__b"><span class="chain__t">12:41:06</span>
+        <span class="chain__l">Case opened</span><span class="chain__h">sha256 3f9a&hellip;e2 &larr; prev</span></div><div class="chain__b"><span class="chain__t">12:41:52</span>
+        <span class="chain__l">Consent</span><span class="chain__h">sha256 b81c&hellip;07 &larr; prev</span></div><div class="chain__b"><span class="chain__t">12:43:18</span>
+        <span class="chain__l">PAN capture</span><span class="chain__h">sha256 4de0&hellip;9b &larr; prev</span></div><div class="chain__b"><span class="chain__t">12:45:11</span>
+        <span class="chain__l">Liveness</span><span class="chain__h">sha256 a2f7&hellip;c4 &larr; prev</span></div><div class="chain__b"><span class="chain__t">12:57:41</span>
+        <span class="chain__l">Decision</span><span class="chain__h">sha256 9f2e&hellip;44 &larr; prev</span></div></div>
+      <div class="chain__lg">
+        <span class="pill">SHA-256 on every event</span>
+        <span class="pill">&larr; prev &mdash; linked backwards</span>
+        <span class="pill pill--gr">A broken link is a visible alarm</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ INTEGRATION ══════════ -->
+<section class="sec" id="integration" aria-labelledby="h-api">
+  <div class="wrap">
+    <div class="shead shead--split">
+      <div>
+        <span class="eyebrow" data-rise>Integration footprint</span>
+        <h2 class="display" id="h-api" data-rise data-delay="1">One REST call in.<br>One webhook out.</h2>
+      </div>
+      <p class="lede" data-rise data-delay="2">No SDK to embed. Your LOS, underwriting or claims system
+        requests a verification URL, hands it off, and listens for a signed webhook on decision.</p>
+    </div>
+
+    <div class="g g--2" style="align-items:stretch">
+      <div class="code" data-rise>
+        <div class="code__b"><span class="code__d"><i></i><i></i><i></i></span>
+          <span>POST /v1/cases/issue-url</span></div>
+<pre>{
+  <span class="k">"process_id"</span>: <span class="s">"mortgage_property_fi"</span>,
+  <span class="k">"external_application_id"</span>: <span class="s">"LAP-99214"</span>,
+  <span class="k">"subject"</span>: {
+    <span class="k">"type"</span>: <span class="s">"property"</span>,
+    <span class="k">"ref"</span>: <span class="s">"PROP-7741"</span>,
+    <span class="k">"declared_address"</span>: <span class="s">"..."</span>
+  },
+  <span class="k">"capture_mode"</span>: <span class="s">"field"</span>,
+  <span class="k">"checklist"</span>: [<span class="s">"front_elevation"</span>,
+                <span class="s">"address_plate"</span>,
+                <span class="s">"interior"</span>,
+                <span class="s">"neighbour_ref"</span>]
+}
+
+<span class="m">&rarr;</span> signed webhook on decision
+<span class="c">// geo + timestamp on every artefact</span>
+<span class="c">// retries 5m / 30m / 2h / 6h / 24h</span></pre>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--s4);justify-content:space-between">
+        <div class="g g--2" style="margin-top:0;gap:var(--s4)">
+          <div class="stat" data-rise data-delay="1">
+            <div class="stat__v">1</div>
+            <div class="stat__k">REST call<br>to integrate</div></div>
+          <div class="stat" data-rise data-delay="2">
+            <div class="stat__v" data-count="100" data-suffix="%">100%</div>
+            <div class="stat__k">Audit<br>coverage</div></div>
+        </div>
+        <div class="card" data-rise data-delay="3">
+          <span class="num">Step 01 &middot; your system</span>
+          <h3 style="margin-top:.5rem">Request a URL</h3>
+          <p>One call with the case reference and the process to run.</p></div>
+        <div class="card" data-rise data-delay="4">
+          <span class="num">Step 02 &middot; Jaano</span>
+          <h3 style="margin-top:.5rem">Run the verification</h3>
+          <p>Agent-led, field or self-serve &mdash; your checklist, questions and branding.</p></div>
+        <div class="card" data-rise data-delay="5">
+          <span class="num">Step 03 &middot; your system</span>
+          <h3 style="margin-top:.5rem">Receive the outcome</h3>
+          <p>Decision, evidence and hash-chained audit trail, once a reviewer signs off.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ COMPANY ══════════ -->
+<section class="sec sec--warm" id="company" aria-labelledby="h-co">
+  <div class="wrap">
+    <div class="shead shead--split">
+      <div>
+        <span class="eyebrow" data-rise>Built by Blostem</span>
+        <h2 class="display" id="h-co" data-rise data-delay="1">Jaano is new.<br>The stack under it isn&rsquo;t.</h2>
+      </div>
+      <p class="lede" data-rise data-delay="2">Blostem has run regulated banking infrastructure since
+        2021 &mdash; an RBI-compliant Technical Service Provider connecting India&rsquo;s fintech
+        platforms to its banks. Jaano runs on that same production stack.</p>
+    </div>
+
+    <div class="g g--4">
+      <div class="stat" data-rise data-delay="1"><div class="stat__v">2021</div>
+        <div class="stat__k">Running regulated<br>infrastructure since</div></div>
+      <div class="stat" data-rise data-delay="2"><div class="stat__v" data-count="10" data-suffix="+">10+</div>
+        <div class="stat__k">Partner banks<br>&amp; NBFCs</div></div>
+      <div class="stat" data-rise data-delay="3"><div class="stat__v" data-count="30" data-suffix="+">30+</div>
+        <div class="stat__k">Platforms building<br>on Blostem</div></div>
+      <div class="stat" data-rise data-delay="4"><div class="stat__v" data-count="100" data-suffix="%">100%</div>
+        <div class="stat__k">India data<br>residency</div></div>
+    </div>
+
+    <div class="dgm-wrap" style="margin-top:var(--s5)" data-rise>
+      <div class="dgm-wrap__cap">
+        <span class="tiny">Where Jaano sits</span>
+        <span class="prow">
+          <span class="pill pill--lav">RBI TSP</span>
+          <span class="pill pill--lav">ISO 27001:2022</span>
+          <span class="pill pill--lav">AES-256</span></span>
+      </div>
+      <div id="dgm-bridge"><!-- computed bridge diagram injected at build --></div>
+    </div>
+
+    <div class="card card--lg" style="margin-top:var(--s5);flex-direction:row;flex-wrap:wrap;
+      gap:var(--s5);align-items:center;justify-content:space-between" data-rise>
+      <div>
+        <span class="tiny">Backed by</span>
+        <div style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center;margin-top:.75rem">
+          <img src="assets/logos/rainmatter.svg" alt="Rainmatter, by Zerodha"
+            style="height:1.625rem;width:auto" loading="lazy" decoding="async">
+          <img src="assets/logos/mobikwik.svg" alt="MobiKwik"
+            style="height:1.125rem;width:auto" loading="lazy" decoding="async">
+          <img src="assets/logos/acventures.png" alt="AC Ventures"
+            style="height:1.375rem;width:auto" loading="lazy" decoding="async">
+          <b style="font-size:1.0625rem;letter-spacing:-.03em">GrowX</b>
+          <span class="faint">&middot;</span><b style="font-size:1.0625rem;letter-spacing:-.03em">Blue Lotus</b>
+        </div>
+      </div>
+      <p class="body" style="max-width:17.5rem">Angel investment from Kapil Bharti, Co-founder
+        of Delhivery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TRUSTED — brand marquee ══════════ -->
+<section class="sec sec--warm" style="padding-block:var(--s14)" aria-labelledby="h-trusted">
+  <div class="wrap">
+    <div class="shead shead--c">
+      <span class="eyebrow eyebrow--c" data-rise>Blostem&rsquo;s partner network</span>
+      <p class="lede" id="h-trusted" data-rise data-delay="1" style="margin-top:var(--s4)">
+        Jaano is pre-launch &mdash; no one is using it yet. Every name below is a partner of
+        <b style="color:var(--ink)">Blostem</b>, the company behind Jaano, on whose production
+        rails it is built.</p>
+    </div>
+  </div>
+  <div style="margin-top:var(--s10)" data-rise data-delay="2">
+    <!--MARQUEE-->
+  </div>
+  <div class="wrap" style="margin-top:var(--s8)">
+    <div class="prow prow--c" data-rise data-delay="3">
+      <span class="pill pill--lav">30+ platforms on Blostem</span>
+      <span class="pill pill--el">10+ banks &amp; NBFCs on Blostem</span>
+      <span class="pill">RBI-compliant TSP &middot; est. 2021</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TRUST ══════════ -->
+<section class="sec sec--ink" id="trust" aria-labelledby="h-tr">
+  <div class="grid-bg"></div>
+  <div class="blob" style="width:32rem;height:32rem;top:-12rem;right:-9rem;
+    background:rgba(96,165,250,.28)"></div>
+  <div class="wrap">
+    <div class="shead shead--split">
+      <div>
+        <span class="eyebrow" data-rise>Why banks trust us</span>
+        <h2 class="display" id="h-tr" data-rise data-delay="1">Built by a regulated entity.<br>Audited continuously.</h2>
+      </div>
+      <p class="lede" data-rise data-delay="2">Jaano runs on Blostem&rsquo;s production stack.
+        Blostem is an RBI-compliant Technical Service Provider already live with the banks and
+        NBFCs below &mdash; Jaano inherits that same infrastructure, certification and control set.</p>
+    </div>
+
+    <div style="margin-top:var(--s10)" data-rise data-delay="1">
+      <span class="tiny">Blostem is live with</span>
+      <div class="prow" style="margin-top:.875rem">
+        <span class="pill">Shivalik SFB</span><span class="pill">Suryoday SFB</span>
+        <span class="pill">Unity SFB</span><span class="pill">Utkarsh SFB</span>
+        <span class="pill">IndusInd Bank</span><span class="pill">Bajaj Finance</span>
+      </div>
+      <p class="body" style="margin-top:var(--s4);max-width:44rem;color:#8d9ab2;
+        font-size:.8125rem">These are Blostem platform relationships, not Jaano
+        deployments. They are listed to show the infrastructure, controls and regulatory
+        posture Jaano is built on.</p>
+    </div>
+
+    <div class="g g--4" style="grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))"
+      data-rise data-delay="2">
+      <div class="cert"><span>Certification</span><b>ISO 27001:2022</b></div>
+      <div class="cert"><span>Regulation</span><b>RBI V-CIP</b></div>
+      <div class="cert"><span>Privacy</span><b>DPDP Act aligned</b></div>
+      <div class="cert"><span>Residency</span><b>100% India &middot; DR</b></div>
+      <div class="cert"><span>Security</span><b>CERT-In annual VAPT</b></div>
+    </div>
+
+    <div class="ctrl" data-rise data-delay="3">
+      <div class="ctrl__i"><span class="ctrl__ic"><svg viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg></span>
+        <span><b>Recording built in</b><p>Every session can be recorded &mdash; evidence without extra tooling.</p></span></div>
+      <div class="ctrl__i"><span class="ctrl__ic"><svg viewBox="0 0 24 24" fill="none">
+        <path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span><b>Consent on record</b><p>Captured on camera before anything else is &mdash; part of the case itself.</p></span></div>
+      <div class="ctrl__i"><span class="ctrl__ic"><svg viewBox="0 0 24 24" fill="none">
+        <rect x="3.5" y="4" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.7"/>
+        <rect x="13.5" y="13" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M10.5 7.5h4a2 2 0 0 1 2 2V13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        <span><b>Hash-chained audit</b><p>Every event linked to the one before it. Edits break the chain, visibly.</p></span></div>
+      <div class="ctrl__i"><span class="ctrl__ic"><svg viewBox="0 0 24 24" fill="none">
+        <circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.7"/>
+        <circle cx="16.5" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.7"/>
+        <path d="M3.5 19v-1.2A5.3 5.3 0 0 1 8.8 12.5h.4a5.3 5.3 0 0 1 4.4 2.3M14.6 19v-.8a4 4 0 0 1 4-4h.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        <span><b>Maker&ndash;checker, 100%</b><p>Two people on every case, anti-collusion enforced. No sampling.</p></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DEMO + LEAD FORM ══════════ -->
+<section class="sec sec--ink" id="demo" aria-labelledby="h-demo" style="background:var(--ink-dark)">
+  <div class="blob" style="width:25rem;height:25rem;bottom:-8rem;left:-6rem;
+    background:var(--lavender);opacity:.25"></div>
+  <div class="blob" style="width:25rem;height:25rem;top:-8rem;right:-6.25rem;
+    background:var(--electric);opacity:.22;animation-delay:-8s"></div>
+  <div class="wrap" style="max-width:64rem;text-align:center">
+    <h2 class="display" id="h-demo" data-rise
+      style="font-size:clamp(2.25rem,4.8vw,3.75rem);line-height:1.05">
+      Verify <span style="color:var(--lavender)">anything</span>.<br>
+      Prove <span style="color:var(--electric)">everything</span>.</h2>
+    <p class="lede" data-rise data-delay="1" style="margin:var(--s6) auto 0;max-width:42rem">
+      30 minutes. We&rsquo;ll show you a live session, the auditor console, and a sandbox URL you
+      can call from your laptop today &mdash; and configure a new use case in front of you.</p>
+
+    
+    <div class="demo__g">
+      <div class="see" data-rise data-delay="2">
+        <div class="see__i"><span class="see__n">01</span>
+          <span><b>A live verification session</b>
+          <p>Watch a real capture &mdash; liveness, geo-lock and signals as they happen.</p></span></div>
+        <div class="see__i"><span class="see__n">02</span>
+          <span><b>The auditor console</b>
+          <p>The maker&ndash;checker view your reviewers would use, case by case.</p></span></div>
+        <div class="see__i"><span class="see__n">03</span>
+          <span><b>A sandbox URL you can call today</b>
+          <p>From your laptop, during the call &mdash; one POST, one webhook.</p></span></div>
+        <div class="see__i"><span class="see__n">04</span>
+          <span><b>Your use case, configured live</b>
+          <p>Tell us what you verify &mdash; we&rsquo;ll build the checklist in front of you.</p></span></div>
+      </div>
+      <form id="lead-form" novalidate
+      data-rise data-delay="3" style="max-width:none;border-radius:var(--r-lg);
+      padding:var(--s6);text-align:left;background:var(--cloud-bg);color:var(--ink);
+      box-shadow:var(--sh-ink)">
+      <div class="eyebrow" style="color:var(--lavender-deep)">Request a demo</div>
+      <div style="margin-top:var(--s4);display:grid;gap:.75rem">
+        <label class="sr-only" for="f-name">Full name</label>
+        <input class="fld" id="f-name" name="name" required placeholder="Full name" autocomplete="name">
+        <label class="sr-only" for="f-email">Work email</label>
+        <input class="fld" id="f-email" name="email" type="email" required placeholder="Work email" autocomplete="email">
+        <label class="sr-only" for="f-company">Company</label>
+        <input class="fld" id="f-company" name="company" required placeholder="Company" autocomplete="organization">
+        <label class="sr-only" for="f-phone">Phone (optional)</label>
+        <input class="fld" id="f-phone" name="phone" type="tel" placeholder="Phone (optional)" autocomplete="tel">
+        <label class="sr-only" for="f-msg">What do you want to verify?</label>
+        <textarea class="fld" id="f-msg" name="message" rows="2"
+          placeholder="What do you want to verify? (optional)"></textarea>
+        <input type="text" name="website" tabindex="-1" autocomplete="off"
+          aria-hidden="true" class="hp">
+      </div>
+      <button type="submit" class="btn btn--primary" style="margin-top:var(--s4);width:100%">
+        Request a demo &rarr;</button>
+      <p id="lead-status" role="status" style="display:none;margin-top:.75rem;font-size:.875rem"></p>
+      <p style="margin-top:.75rem;font-size:.78125rem;color:var(--ink-muted);
+        font-weight:500">We reply within one business day.</p>
+    </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="ft">
+  <div class="grid-bg"></div>
+  <div class="wrap">
+    <div class="ft__g">
+      <div>
+        <span class="brand">
+          <svg class="brand__m" viewBox="0 0 101.20 160.19" aria-hidden="true"><use href="#jm"/></svg>
+          <svg class="brand__w" viewBox="0 0 101.20 15.03" aria-hidden="true"><use href="#jw"/></svg>
+        </span>
+        <p class="body" style="margin-top:var(--s4);max-width:21rem;color:#cbd5e1">
+          The configurable verification platform &mdash; verify any person, property or business,
+          with evidence that holds up.</p>
+        <p class="tiny" style="margin-top:var(--s4)">A product of Blostem Fintech Pvt. Ltd.</p>
+      </div>
+      <nav aria-label="Platform">
+        <h4>Platform</h4>
+        <a href="#use-cases">Use cases</a><a href="#engine">The engine</a>
+        <a href="#how">How it&rsquo;s captured</a><a href="#company">Company</a>
+        <a href="#trust">Trust &amp; compliance</a>
+      </nav>
+      <nav aria-label="Get started">
+        <h4>Get started</h4>
+        <a href="#demo">Book a live demo</a>
+        <a href="https://blostem.com" target="_blank" rel="noopener">blostem.com &nearr;</a>
+        <p class="body" style="margin-top:.625rem;color:#cbd5e1">We&rsquo;ll set you up with a
+          sandbox within 48 hours.</p>
+      </nav>
+    </div>
+    <div class="ft__b">
+      <span>&copy; 2026 Blostem Fintech Pvt. Ltd. All rights reserved.</span>
+      <span>RBI V-CIP &middot; DPDPA &middot; ISO 27001</span>
+    </div>
+  </div>
+</footer>
