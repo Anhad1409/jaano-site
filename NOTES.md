@@ -39,7 +39,7 @@ integration (code + steps + stats) → company (Blostem bridge) → trust
 - **Hash chain**: 5 linked blocks, staggered pop-in, `← prev` pointers.
 - **Coverage matrix**: 6 use cases × 3 capture modes.
 
-## Brand logos — 19 of 20, in all three sections
+## Brand logos — 20 of 20, in all three sections
 Real logos are in `assets/logos/`, sourced from Wikipedia article images and the
 companies' own homepages, then **each one rendered and visually verified** before use:
 
@@ -67,11 +67,14 @@ uniform and never shows a broken image.
 `MARK` set in `build/logos.py` as **mark + name** — a bare symbol is unidentifiable
 in a row of wordmarks.
 
-**Still typographic — Shriram Finance only.** Their header logo is injected by JS and
-appears nowhere in the served HTML. Exhausted: site scrape, `media_*` asset sweep
-(SVG and raster — all product icons and promo banners), path probing, Wikipedia and
-Wikimedia Commons. Drop `shriramfinance.svg` into `assets/logos/` and rebuild.
-GrowX and Blue Lotus in the backed-by row are also still text.
+**All 20 brands now carry a verified logo.** Shriram Finance was the last holdout —
+their header logo is JS-injected and absent from the homepage HTML, but interior pages
+(`/about-us`, `/contact-us`) reference `cdn.shriramfinance.in`, which serves the real
+`sw-logo.svg`. Note the trap: Wikipedia's Shriram article carries `Shriram Group.svg`,
+which reads "SHRIRAM **Capital**" — a different group entity, and wrong on a chip
+labelled Shriram Finance.
+
+GrowX and Blue Lotus in the backed-by row are still text.
 
 Two normalisations live in `build/logos.py`:
 - `SCALE` — square marks (Jio, Bajaj, tide) read smaller than wordmarks at equal
