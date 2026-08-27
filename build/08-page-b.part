@@ -138,7 +138,8 @@
             style="height:1.125rem;width:auto" loading="lazy" decoding="async">
           <img src="assets/logos/acventures.png" alt="AC Ventures"
             style="height:1.375rem;width:auto" loading="lazy" decoding="async">
-          <b style="font-size:1.0625rem;letter-spacing:-.03em">GrowX</b>
+          <img src="assets/logos/growx.svg" alt="GrowX"
+            style="height:1.0625rem;width:auto;color:var(--ink)" loading="lazy" decoding="async">
           <img src="assets/logos/bluelotus.svg" alt="Blue Lotus Ventures"
             style="height:1.25rem;width:auto" loading="lazy" decoding="async">
         </div>

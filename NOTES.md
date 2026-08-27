@@ -78,10 +78,12 @@ labelled Shriram Finance.
 `/wp-content/uploads/2023/04/Group-2.svg`, not the visitor-widget asset the
 homepage advertises).
 
-**GrowX stays text, deliberately.** Their mark is a tree built from tiny
-letterforms — authentic, and legible at 150px+, but an unreadable smudge at the
-~22px a chip renders. Their SVGs collapse to a single glyph (unembedded fonts).
-A logo has to survive its render size to earn the slot.
+**GrowX** is a reconstructed lockup (`growx.svg`, hand-composed). Their published
+`Growx-logo.svg` is white-on-transparent artwork whose viewBox frames only the tree
+illustration — the "grow" wordmark and the "X" both sit OUTSIDE the declared viewBox,
+so every renderer showed a single stray glyph. Extracting the three paths, measuring
+real bounds and setting the wordmark beside the X (scaled 1.9x to match letter height)
+yields a clean horizontal "growx" that reads at 22px. Uses `fill="currentColor"`.
 
 Logos appear in THREE places and they are generated separately:
 `logos.py` (marquee, backed-by), `dgm.py` (bridge diagram, base64-free `<image>`),
