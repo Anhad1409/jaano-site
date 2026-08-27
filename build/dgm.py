@@ -78,6 +78,8 @@ def bridge():
     ASP={r['src']:r['a'] for r in json.load(open(H_/'logo-aspect.json'))}
     LOGO_DIR=H_.parent/'assets'/'logos'
     MONO={'aspero','centricity','utkarshsfb'}
+    # square marks with no wordmark: draw the mark, then set the name beside it
+    MARK={'unitysfb'}
     # square marks and logos with internal whitespace read smaller at equal height
     SCALE={'jiofinance':1.34,'tide':1.28,'bajajfinance':1.5,'fello':1.12,
            'shivaliksfb':1.15,'centricity':1.1}
@@ -119,9 +121,20 @@ def bridge():
                 lw=min(h*a, CH_W-22)
                 h=min(h, lw/a)
                 st=' style="filter:brightness(0)"' if s in MONO else ''
-                o.append(f'<image href="{src}" x="{cx+(CH_W-lw)/2:.1f}" y="{y+(CH_H-h)/2:.1f}" '
-                         f'width="{lw:.1f}" height="{h:.1f}" '
-                         f'preserveAspectRatio="xMidYMid meet"{st}><title>{esc(n)}</title></image>')
+                if s in MARK:
+                    mh=LG_H*1.15; mw=mh*a
+                    tw=6.1*len(n)
+                    grp=mw+6+tw
+                    gx=cx+(CH_W-grp)/2
+                    o.append(f'<image href="{src}" x="{gx:.1f}" y="{y+(CH_H-mh)/2:.1f}" '
+                             f'width="{mw:.1f}" height="{mh:.1f}" '
+                             f'preserveAspectRatio="xMidYMid meet"><title>{esc(n)}</title></image>')
+                    o.append(f'<text class="lbl" x="{gx+mw+6:.1f}" y="{y+CH_H/2+4:.0f}" '
+                             f'style="font-size:11px">{esc(n)}</text>')
+                else:
+                    o.append(f'<image href="{src}" x="{cx+(CH_W-lw)/2:.1f}" y="{y+(CH_H-h)/2:.1f}" '
+                             f'width="{lw:.1f}" height="{h:.1f}" '
+                             f'preserveAspectRatio="xMidYMid meet"{st}><title>{esc(n)}</title></image>')
             else:
                 o.append(f'<circle cx="{cx+13:.0f}" cy="{y+CH_H/2:.0f}" r="2.6" fill="var(--{dot})"/>')
                 o.append(f'<text class="lbl" x="{cx+23:.0f}" y="{y+CH_H/2+4:.0f}" '

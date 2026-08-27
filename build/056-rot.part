@@ -40,7 +40,7 @@
 .cam{position:relative;overflow:hidden;
   background:radial-gradient(86% 74% at 50% 30%,#2c3266,#141838 58%,#0b0e22)}
 .cam__ph{position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center 20%}
+  object-fit:cover;object-position:center 30%}
 .cam__mesh line{stroke:rgba(167,139,250,.42)}
 .cam__mesh circle{fill:rgba(167,139,250,.85)}
 .cam__ret{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);

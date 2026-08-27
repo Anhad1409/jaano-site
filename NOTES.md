@@ -74,7 +74,19 @@ their header logo is JS-injected and absent from the homepage HTML, but interior
 which reads "SHRIRAM **Capital**" — a different group entity, and wrong on a chip
 labelled Shriram Finance.
 
-GrowX and Blue Lotus in the backed-by row are still text.
+**Blue Lotus Ventures** is now a logo too (their real lockup lives at
+`/wp-content/uploads/2023/04/Group-2.svg`, not the visitor-widget asset the
+homepage advertises).
+
+**GrowX stays text, deliberately.** Their mark is a tree built from tiny
+letterforms — authentic, and legible at 150px+, but an unreadable smudge at the
+~22px a chip renders. Their SVGs collapse to a single glyph (unembedded fonts).
+A logo has to survive its render size to earn the slot.
+
+Logos appear in THREE places and they are generated separately:
+`logos.py` (marquee, backed-by), `dgm.py` (bridge diagram, base64-free `<image>`),
+and the deck's `s12.part` (base64-embedded). **Adding a logo means re-running
+`dgm.py` as well as `build.py`** — `build.py` injects a pre-generated bridge.
 
 Two normalisations live in `build/logos.py`:
 - `SCALE` — square marks (Jio, Bajaj, tide) read smaller than wordmarks at equal
